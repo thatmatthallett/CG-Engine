@@ -1,0 +1,46 @@
+{
+  "name": "cg-engine",
+  "version": "1.0.0",
+  "description": "Card Game Engine Framework - A framework for building multiplayer card games with live and protracted play modes",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "npm-run-all --parallel dev:backend dev:web",
+    "dev:backend": "vite --config vite-backend.config.ts",
+    "dev:web": "vite --config vite-web.config.ts",
+    "build": "npm-run-all build:backend build:web",
+    "build:backend": "tsc && copyfiles -u 1 'src/assets/**/*' dist/assets",
+    "build:web": "tsc && vite build --config vite-web.config.ts",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "card-game",
+    "engine",
+    "multiplayer",
+    "rummy",
+    "realtime"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "firebase-admin": "^12.0.0",
+    "socket.io": "^4.7.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.55.0",
+    "express": "^4.18.2",
+    "firebase-admin": "^12.0.0",
+    "nodemon": "^3.0.2",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.8"
+  }
+}

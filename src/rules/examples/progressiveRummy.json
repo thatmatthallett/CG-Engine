@@ -1,0 +1,35 @@
+{
+  "gameId": "progressiveRummy",
+  "displayName": "Progressive Rummy",
+  "description": "A classic rummy game where you can take discarded cards from the heap (up to 3 per hand) and form sets or runs. Features protracted play support with pass/act notifications.",
+
+  "validMoves": {
+    "initialHandState": [
+      "draw",
+      "discard"
+    ],
+    "canDrawFromDeck": [
+      "draw",
+      "discard"
+    ],
+    "discardPileHasCards": [
+      "takeDiscard",
+      "discard"
+    ],
+    "playerCanCompleteSet": [
+      "declareSet",
+      "discard"
+    ]
+  },
+
+  "turnOrderFunction": "circularByPlayerIndex",
+
+  "discardHeapRules": {
+    "maxCardsBeforeRestriction": 3,
+    "allowedToTake": "any"
+  },
+
+  "winCondition": {
+    "checkWin": "declaredSets.length > 0 && hand.isEmpty()"
+  }
+}
