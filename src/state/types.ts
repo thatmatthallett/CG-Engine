@@ -6,7 +6,10 @@
  * and all clients sync to this state.
  */
 
-import type { Card as CardSchema } from '../utils/card-utils';
+import type { Card } from '../utils/card-utils';
+
+// Export our own simpler Card interface - card-utils provides the shared shape
+export { type Card } from '../utils/card-utils';
 
 /**
  * GameState - The single source of truth for any game session

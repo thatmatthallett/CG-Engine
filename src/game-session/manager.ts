@@ -7,6 +7,7 @@
 
 import { GameState, PlayerState, Card, PendingNotification } from '../state/types';
 import type { RuleModule } from '../rules/loader';
+import { shuffleDeck } from '../utils/card-utils';
 
 /**
  * GameManager creates and manages game sessions
@@ -65,7 +66,7 @@ export default class GameManager {
     startingHandSize: number = 7
   ): Promise<GameState> {
     // Create and shuffle deck
-    const deck = generateDeck(deckSize);
+    const deck = shuffleDeck(generateDeck(deckSize));
 
     // Deal initial hands
     const players = gameState.players.map((player, index) => ({
@@ -169,25 +170,3 @@ export default class GameManager {
  * 3. Notifications handled as first-class state, not side effects
  * 4. Clean separation between lobby vs playing states
  */
-
-/**
- * Helper function to generate a deck (simplified version)
- */
-function generateDeck(count: number): Card[] {
-  const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
-  const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]; // 11=J, 12=Q, 13=K, 14=A
-
-  const deck: Card[] = [];
-
-  for (let i = 0; i < count; i++) {
-    const suit = suits[i % suits.length];
-    const rank = ranks[i % ranks.length];
-    deck.push({
-      suit,
-      rank,
-      faceUp: true,
-    });
-  }
-
-  return deck;
-}
